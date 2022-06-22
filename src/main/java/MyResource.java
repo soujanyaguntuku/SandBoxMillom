@@ -4,31 +4,35 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import millom.sandbox.Service.MessageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Path("/hello")
+@Path("/get")
 public class MyResource {
 
+  private static final Logger logger
+      = (Logger) LoggerFactory.getLogger(MainApp.class);
   @Inject
   private MessageService msgService;
 
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public String helloAzure() {
+  public String hello() {
+
+    //Logs every request with SLF4J.
+    logger.info("Example log from "+ MyResource.class.getSimpleName() + " class, get method: hello()");
+
     return "hello";
   }
 
-  @Path("/hk2/aws")
+  @Path("/healthz")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public String helloAws() {
-    return msgService.getHello();
-  }
+  public String gethelloHk2() {
 
-  @Path("/hk2/try")
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String helloTry() {
-    return " Hello fisrt try";
+    //Logs request with SLF4J.
+    logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : gethelloHk2()");
+    return msgService.getHello();
   }
 
 }
