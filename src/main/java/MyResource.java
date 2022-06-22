@@ -7,7 +7,7 @@ import millom.sandbox.Service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("/get")
+@Path("/api")
 public class MyResource {
 
   private static final Logger logger
@@ -32,6 +32,7 @@ public class MyResource {
 
     //Logs request with SLF4J.
     logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : gethelloHk2()");
+    
     return msgService.getHello();
   }
 
