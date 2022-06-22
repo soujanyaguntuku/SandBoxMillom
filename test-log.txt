@@ -1,0 +1,5 @@
+104  [grizzly-http-server-0] INFO  MainApp - Example log from MyResource class, get method: hello()
+4971 [grizzly-http-server-1] INFO  MainApp - Example log from MyResource class, get method : gethelloHk2()
+4971 [grizzly-http-server-1] INFO  MainApp - Example log from MyResource class, get method : gethelloHk2()
+4971 [grizzly-http-server-1] INFO  MainApp - Example log from MyResource class, get method : gethelloHk2()
+4972 [grizzly-http-server-1] INFO  MainApp - Example log from MyResource class, get method : gethelloHk2()
