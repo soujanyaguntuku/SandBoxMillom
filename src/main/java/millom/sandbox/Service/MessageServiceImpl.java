@@ -8,8 +8,10 @@ import java.time.temporal.ChronoUnit;
 
 public class MessageServiceImpl implements MessageService {
 
+  // format for ISO 8601
+  private static final DateTimeFormatter isoFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   private static final LocalDate curiosityLandingDate = LocalDate.parse("2012-08-06",
-      DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      isoFormat);
 
   @Override
   public String getHello() {
@@ -18,24 +20,18 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public int convertCuriositySol(String date) {
-    float diff_In_Days ;
-    LocalDate earthDate;
-    // format for ISO 8601
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     if(date == null){
       // assign current date
-      date = format.format(LocalDateTime.now());
+      date = isoFormat.format(LocalDateTime.now());
     }
     try {
-      earthDate = LocalDate.parse(date, format);
-      diff_In_Days = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
-
-    } catch (DateTimeParseException e) {
+      LocalDate earthDate = LocalDate.parse(date, isoFormat);
+      float diff_In_Days = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
+      return (int) Math.round(diff_In_Days * 86400 / 88775.245);
+    }
+    catch (DateTimeParseException e) {
       throw new RuntimeException(e);
     }
-    return (int) Math.round(diff_In_Days * 86400 / 88775.245);
   }
-
 }
 
