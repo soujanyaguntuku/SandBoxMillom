@@ -1,5 +1,6 @@
 package millom.sandbox.Service;
 
+import jakarta.inject.Inject;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,18 +21,19 @@ public class MessageServiceImpl implements MessageService {
 
   @Override
   public int convertCuriositySol(String date) {
-    if(date == null){
-      // assign current date
-      date = isoFormat.format(LocalDateTime.now());
-    }
+
     try {
       LocalDate earthDate = LocalDate.parse(date, isoFormat);
       float diff_In_Days = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
-      return (int) Math.round(diff_In_Days * 86400 / 88775.245);
+      return (int) Math.round(diff_In_Days * 86400 / 88775.245) ;
     }
     catch (DateTimeParseException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException("Date is not in ISO 8601 format",e);
     }
+  }
+  public String getTodayDate(){
+    String date = isoFormat.format(LocalDateTime.now());
+    return date;
   }
 }
 

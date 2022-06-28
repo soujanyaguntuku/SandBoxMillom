@@ -1,22 +1,12 @@
-import static java.lang.Math.ceil;
-
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
 import millom.sandbox.Service.MessageService;
+import millom.sandbox.Service.MessageServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +40,10 @@ public class MyResource {
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public int convertCuriositySol(@QueryParam("date") String date) {
+    if(date == null){
+      // assign current date
+      date = msgService.getTodayDate();
+    }
     logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : convertCuriositySol()");
     return msgService.convertCuriositySol(date);
   }
