@@ -13,13 +13,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
 class MessageServiceImplTest {
-  MessageServiceImpl messageServiceImpl = new MessageServiceImpl();
+  MessageServiceImpl messageServiceImpl;
 
   @BeforeEach
   void setUp() {
-    MockitoAnnotations.initMocks(this);
+    messageServiceImpl = new MessageServiceImpl();
   }
 
   @Test
