@@ -4,9 +4,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
-import java.time.LocalDateTime;
-import millom.sandbox.Service.MessageService;
-import millom.sandbox.Service.MessageServiceImpl;
+import millom.sandbox.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
