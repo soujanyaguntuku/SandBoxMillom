@@ -1,4 +1,4 @@
-package millom.sandbox.Service;
+package millom.sandbox.service;
 
 
 public interface MessageService {
