@@ -21,7 +21,6 @@ class MessageServiceImplTest {
 
   @Test
   void convertCuriositySolThrowsExceptionIfDateInvalidFormat() {
-    String date = "20-06-15";
-    assertThrows(RuntimeException.class, () -> messageServiceImpl.convertCuriositySol(date));
+    assertThrows(RuntimeException.class, () -> messageServiceImpl.convertCuriositySol("20-06-15"));
   }
 }

@@ -4,6 +4,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 import millom.sandbox.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +39,22 @@ public class MyResource {
   @Path("/sol")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  public int convertCuriositySol(@QueryParam("date") String date) {
+  public Response convertCuriositySol(@QueryParam("date") String date) {
     if(date == null){
       // assign current date
       date = msgService.getTodayDate();
     }
     logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : convertCuriositySol()");
-    return msgService.convertCuriositySol(date);
+    try {
+      return Response.
+          status(Response.Status.OK)
+          .entity(msgService.convertCuriositySol(date))
+          .build();
+    } catch (Exception e) {
+      return Response
+          .status(Status.BAD_REQUEST)
+          .entity(e.getMessage())
+          .build();
+    }
   }
 }

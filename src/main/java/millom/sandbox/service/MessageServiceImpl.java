@@ -23,16 +23,15 @@ public class MessageServiceImpl implements MessageService {
 
     try {
       LocalDate earthDate = LocalDate.parse(date, isoFormat);
-      float diff_In_Days = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
-      return (int) Math.round(diff_In_Days * 86400 / 88775.245) ;
+      float diffInDays = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
+      return (int) Math.round(diffInDays * 86400 / 88775.245) ;
     }
     catch (DateTimeParseException e) {
       throw new RuntimeException("Date is not in ISO 8601 format",e);
     }
   }
   public String getTodayDate(){
-    String date = isoFormat.format(LocalDateTime.now());
-    return date;
+    return isoFormat.format(LocalDateTime.now());
   }
 }
 
