@@ -1,8 +1,8 @@
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import millom.sandbox.Service.MessageService;
-import millom.sandbox.Service.MessageServiceImpl;
+import millom.sandbox.service.MessageService;
+import millom.sandbox.service.MessageServiceImpl;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
