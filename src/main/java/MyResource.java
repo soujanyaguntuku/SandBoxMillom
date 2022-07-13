@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 @Path("/api")
 public class MyResource {
-  private static final Logger logger
-      = (Logger) LoggerFactory.getLogger(MainApp.class);
+  private static final Logger LOGGER
+      = (Logger) LoggerFactory.getLogger(MyResource.class);
 
   @Inject
   private MessageService msgService;
@@ -22,7 +22,7 @@ public class MyResource {
   @Produces(MediaType.TEXT_PLAIN)
   public String hello() {
     //Logs every request with SLF4J.
-    logger.info("Example log from "+ MyResource.class.getSimpleName() + " class, get method: hello()");
+    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() + " class, get method: hello()");
     return "hello";
   }
 
@@ -31,7 +31,7 @@ public class MyResource {
   @Produces(MediaType.TEXT_PLAIN)
   public String getHelloHk2() {
     //Logs request with SLF4J.
-    logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : gethelloHk2()");
+    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : gethelloHk2()");
     return msgService.getHello();
   }
 
@@ -44,7 +44,7 @@ public class MyResource {
       // assign current date
       date = msgService.getTodayDate();
     }
-    logger.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : convertCuriositySol()");
+    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : convertCuriositySol()");
     try {
       return Response.
           status(Response.Status.OK)

@@ -24,7 +24,7 @@ public class MessageServiceImpl implements MessageService {
     try {
       LocalDate earthDate = LocalDate.parse(date, isoFormat);
       float diffInDays = ChronoUnit.DAYS.between(curiosityLandingDate, earthDate);
-      return (int) Math.round(diffInDays * 86400 / 88775.245) ;
+      return (int) Math.ceil(diffInDays * 86400 / 88775.245) ;
     }
     catch (DateTimeParseException e) {
       throw new RuntimeException("Date is not in ISO 8601 format",e);

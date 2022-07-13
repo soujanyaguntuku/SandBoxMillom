@@ -7,6 +7,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
+import resources.NasaResource;
 
 public class MainApp {
 
@@ -19,7 +20,7 @@ public class MainApp {
     final ResourceConfig config = new ResourceConfig();
 
     config.register(MyResource.class);
-
+    config.register(NasaResource.class);
    // config.register(AutoScanFeature.class);
 
     config.register(new AbstractBinder(){
