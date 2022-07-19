@@ -21,7 +21,6 @@ public class MainApp {
 
     config.register(MyResource.class);
     config.register(NasaResource.class);
-   // config.register(AutoScanFeature.class);
 
     config.register(new AbstractBinder(){
       @Override

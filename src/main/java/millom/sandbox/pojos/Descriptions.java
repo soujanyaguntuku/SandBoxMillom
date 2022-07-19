@@ -2,8 +2,10 @@ package millom.sandbox.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Descriptions {
+
   @JsonProperty("disclaimer_en")
   private String disclaimerEn;
 
@@ -82,10 +84,10 @@ public class Descriptions {
   @JsonProperty("sunrise_sunset_desc_es")
   private String sunriseSunsetDescEs;
 
-  private Descriptions(){
+  private Descriptions() {
   }
 
-  public Descriptions(DescriptionsBuilder descriptionsBuilder) {
+  private Descriptions(DescriptionsBuilder descriptionsBuilder) {
     this.disclaimerEn = descriptionsBuilder.disclaimerEn;
     this.disclaimerEs = descriptionsBuilder.disclaimerEs;
     this.sol_desc_en = descriptionsBuilder.sol_desc_en;
@@ -217,7 +219,9 @@ public class Descriptions {
   public String getSunriseSunsetDescEs() {
     return sunriseSunsetDescEs;
   }
-  public static class DescriptionsBuilder{
+
+  public static class DescriptionsBuilder {
+
     private String disclaimerEn;
     private String disclaimerEs;
     private String sol_desc_en;
@@ -280,6 +284,7 @@ public class Descriptions {
       this.sunriseSunsetDescEn = sunriseSunsetDescEn;
       this.sunriseSunsetDescEs = sunriseSunsetDescEs;
     }
+
     public Descriptions build() {
       return new Descriptions(this);
     }

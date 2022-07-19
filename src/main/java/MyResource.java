@@ -12,17 +12,18 @@ import org.slf4j.LoggerFactory;
 
 @Path("/api")
 public class MyResource {
-  private static final Logger LOGGER
-      = (Logger) LoggerFactory.getLogger(MyResource.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(MyResource.class);
 
   @Inject
   private MessageService msgService;
-
+  @Path("/hello")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public String hello() {
     //Logs every request with SLF4J.
-    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() + " class, get method: hello()");
+    LOGGER.info(String.format("Success message from %s class and  get method: %s()",
+        Thread.currentThread().getStackTrace()[1].getClassName(),
+        Thread.currentThread().getStackTrace()[1].getMethodName()));
     return "hello";
   }
 
@@ -31,7 +32,9 @@ public class MyResource {
   @Produces(MediaType.TEXT_PLAIN)
   public String getHelloHk2() {
     //Logs request with SLF4J.
-    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : gethelloHk2()");
+    LOGGER.info(String.format("Success message from %s class and  get method: %s()",
+        Thread.currentThread().getStackTrace()[1].getClassName(),
+        Thread.currentThread().getStackTrace()[1].getMethodName()));
     return msgService.getHello();
   }
 
@@ -44,13 +47,19 @@ public class MyResource {
       // assign current date
       date = msgService.getTodayDate();
     }
-    LOGGER.info("Example log from "+ MyResource.class.getSimpleName() +" class, get method : convertCuriositySol()");
+
     try {
+      LOGGER.info(String.format("Success message from %s class and  get method: %s()",
+          Thread.currentThread().getStackTrace()[1].getClassName(),
+          Thread.currentThread().getStackTrace()[1].getMethodName()));
       return Response.
           status(Response.Status.OK)
           .entity(msgService.convertCuriositySol(date))
           .build();
     } catch (Exception e) {
+      LOGGER.info(String.format("Exception occurred from %s class and  get method: %s()",
+          Thread.currentThread().getStackTrace()[1].getClassName(),
+          Thread.currentThread().getStackTrace()[1].getMethodName()));
       return Response
           .status(Status.BAD_REQUEST)
           .entity(e.getMessage())
