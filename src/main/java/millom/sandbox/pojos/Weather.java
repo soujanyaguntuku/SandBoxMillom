@@ -1,18 +1,18 @@
 package millom.sandbox.pojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Weather {
-  @JsonProperty("descriptions")
+
   private Descriptions descriptions;
-  @JsonProperty("soles")
   private List<Sol> soles;
-  private Weather(){
+
+  private Weather() {
   }
 
-  private Weather(WeatherBuilder weatherBuilder){
+  private Weather(WeatherBuilder weatherBuilder) {
     this.descriptions = weatherBuilder.descriptions;
     this.soles = weatherBuilder.soles;
   }
@@ -26,13 +26,20 @@ public class Weather {
   }
 
   public static class WeatherBuilder {
-    // builder code
+
     private Descriptions descriptions;
     private List<Sol> soles;
-    public WeatherBuilder(Descriptions descriptions,  List<Sol> soles){
+
+    public WeatherBuilder descriptions(Descriptions descriptions) {
       this.descriptions = descriptions;
-      this.soles = soles;
+      return this;
     }
+
+    public WeatherBuilder sols(List<Sol> soles) {
+      this.soles = soles;
+      return this;
+    }
+
     public Weather build() {
       return new Weather(this);
     }

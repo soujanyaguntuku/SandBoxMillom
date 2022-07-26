@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import millom.sandbox.CustomException.DateFormatIncorrectException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class MessageServiceImplTest {
 
@@ -16,14 +18,10 @@ class MessageServiceImplTest {
     messageServiceImpl = new MessageServiceImpl();
   }
 
-  @Test
-  void convertCuriositySolTest1() throws DateFormatIncorrectException {
-    assertEquals(3504, messageServiceImpl.convertCuriositySol("2022-06-15"));
-  }
-
-  @Test
-  void ConvertCuriositySolTest2() throws DateFormatIncorrectException {
-    assertEquals(3516, messageServiceImpl.convertCuriositySol("2022-06-27"));
+  @ParameterizedTest
+  @CsvSource(value = {"2022-06-15:3504", "2022-06-27:3516"}, delimiter = ':')
+  void ConvertCuriositySolTest(String input, int expected) throws DateFormatIncorrectException {
+    assertEquals(expected, messageServiceImpl.convertCuriositySol(input));
   }
 
   @Test

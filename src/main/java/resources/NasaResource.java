@@ -31,7 +31,7 @@ public class NasaResource {
     if (feed == null || feed.length() == 0 || !feed.equals("weather")) {
       return getErrorResponse("feed");
     }
-    if (feedType == null || feedType.length() == 0 || !feedType.matches("json|xml|text")) {
+    if (feedType == null || feedType.length() == 0 || !feedType.equals("json")) {
       return getErrorResponse("feedType");
     }
     String versionToString = String.valueOf(version);

@@ -1,7 +1,6 @@
 package millom.sandbox.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import millom.sandbox.CustomException.InvalidWeatherException;
 import millom.sandbox.pojos.Weather;
@@ -9,10 +8,6 @@ import millom.sandbox.pojos.Weather;
 public class NasaMapper {
 
   private static final ObjectMapper MAPPER = new ObjectMapper();
-
-  static {
-    MAPPER.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-  }
 
   public Weather deserializeWeather(String response) throws InvalidWeatherException {
     try {
@@ -23,5 +18,4 @@ public class NasaMapper {
       throw new InvalidWeatherException("Content is null" + e.getMessage());
     }
   }
-
 }

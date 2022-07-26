@@ -1,7 +1,7 @@
 package resources;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 import jakarta.ws.rs.core.Response;
@@ -55,9 +55,10 @@ class MyResourceTest {
   @Test
   void TestConvertCuriositySolThrowsException() throws DateFormatIncorrectException {
     String date = "2022-";
-    when(messageServiceMock.convertCuriositySol(date)).thenThrow(new RuntimeException());
+    when(messageServiceMock.convertCuriositySol(date)).thenThrow(
+        new DateFormatIncorrectException("Date is not in ISO 8601 format."));
     Response response = myResource.convertCuriositySol(date);
-    assertEquals(response.getStatus(), 400);
-    assertNull(response.getEntity());
+    assertThat(response.getStatus()).isEqualTo(400);
+    assertThat(response.getEntity()).isEqualTo( "Date is not in ISO 8601 format.");
   }
 }

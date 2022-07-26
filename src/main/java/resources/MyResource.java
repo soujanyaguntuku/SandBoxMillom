@@ -8,6 +8,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import millom.sandbox.CustomException.DateFormatIncorrectException;
 import millom.sandbox.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +59,7 @@ public class MyResource {
           status(Response.Status.OK)
           .entity(msgService.convertCuriositySol(date))
           .build();
-    } catch (Exception e) {
+    } catch (DateFormatIncorrectException e) {
       LOGGER.info(String.format("Exception occurred from %s class and  get method: %s()",
           Thread.currentThread().getStackTrace()[1].getClassName(),
           Thread.currentThread().getStackTrace()[1].getMethodName()));

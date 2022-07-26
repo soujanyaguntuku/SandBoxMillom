@@ -3,6 +3,7 @@ package millom.sandbox.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import millom.sandbox.CustomException.InvalidWeatherException;
 import millom.sandbox.Utility.JsonUtility;
 import millom.sandbox.Utility.WeatherDataUtility;
@@ -15,24 +16,27 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 class WeatherServiceTest {
+
   @Mock
   private MyClientService myClientService;
   @Mock
   private NasaMapper nasaMapper;
   @InjectMocks
-  private WeatherService weatherService ;
+  private WeatherService weatherService;
+
   @BeforeEach
   private void setUp() {
     MockitoAnnotations.initMocks(this);
   }
 
   @Test
-   void getWeatherMapping() throws InvalidWeatherException {
-    when(myClientService.getJsonWeather("weather","json",1.0f,"msl")).
-        thenReturn(JsonUtility.SAMPLE_RESPONSE);
-    when(nasaMapper.deserializeWeather(JsonUtility.SAMPLE_RESPONSE)).
-       thenReturn(WeatherDataUtility.WEATHER_DATA);
-    Weather response = weatherService.getWeatherMapping("weather","json",1.0f,"msl");
+  void getWeatherMapping() throws InvalidWeatherException, IOException {
+    String responseString = JsonUtility.getSampleResponse("response.json");
+    when(myClientService.getJsonWeather("weather", "json", 1.0f, "msl")).
+        thenReturn(responseString);
+    when(nasaMapper.deserializeWeather(responseString)).
+        thenReturn(WeatherDataUtility.WEATHER_DATA);
+    Weather response = weatherService.getWeatherMapping("weather", "json", 1.0f, "msl");
     assertThat(response).isNotNull();
     assertThat(response.getSoles()).hasSize(2);
     assertThat(response.getDescriptions().getLsDescEn()).

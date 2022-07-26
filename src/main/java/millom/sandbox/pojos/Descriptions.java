@@ -13,10 +13,10 @@ public class Descriptions {
   private String disclaimerEs;
 
   @JsonProperty("sol_desc_en")
-  private String sol_desc_en;
+  private String solDescEn;
 
   @JsonProperty("sol_desc_es")
-  private String sol_desc_es;
+  private String solDescEs;
 
   @JsonProperty("terrestrial_date_desc_en")
   private String terrestrialDateDescEn;
@@ -90,8 +90,8 @@ public class Descriptions {
   private Descriptions(DescriptionsBuilder descriptionsBuilder) {
     this.disclaimerEn = descriptionsBuilder.disclaimerEn;
     this.disclaimerEs = descriptionsBuilder.disclaimerEs;
-    this.sol_desc_en = descriptionsBuilder.sol_desc_en;
-    this.sol_desc_es = descriptionsBuilder.sol_desc_es;
+    this.solDescEn = descriptionsBuilder.solDescEn;
+    this.solDescEs = descriptionsBuilder.solDescEs;
     this.terrestrialDateDescEn = descriptionsBuilder.terrestrialDateDescEn;
     this.terrestrialDateDescEs = descriptionsBuilder.terrestrialDateDescEs;
     this.tempDescEn = descriptionsBuilder.tempDescEn;
@@ -125,11 +125,11 @@ public class Descriptions {
   }
 
   public String getSol_desc_en() {
-    return sol_desc_en;
+    return solDescEn;
   }
 
   public String getSol_desc_es() {
-    return sol_desc_es;
+    return solDescEs;
   }
 
   public String getTerrestrialDateDescEn() {
@@ -221,11 +221,10 @@ public class Descriptions {
   }
 
   public static class DescriptionsBuilder {
-
     private String disclaimerEn;
     private String disclaimerEs;
-    private String sol_desc_en;
-    private String sol_desc_es;
+    private String solDescEn;
+    private String solDescEs;
     private String terrestrialDateDescEn;
     private String terrestrialDateDescEs;
     private String tempDescEn;
@@ -249,40 +248,134 @@ public class Descriptions {
     private String sunriseSunsetDescEn;
     private String sunriseSunsetDescEs;
 
-    public DescriptionsBuilder(String disclaimerEn, String disclaimerEs, String sol_desc_en,
-        String sol_desc_es, String terrestrialDateDescEn, String terrestrialDateDescEs,
-        String tempDescEn, String tempDescEs, String pressureDescEn, String pressureDescEs,
-        String absHumidityDescEn, String absHumidityDescEs, String windDescEn, String windDescEs,
-        String gtsTempDescEn, String gtsTempDescEs, String localUvIrradianceIndexDescEn,
-        String localUvIrradianceIndexDescEs, String atmoOpacityDescEn, String atmoOpacityDescEs,
-        String lsDescEn, String lsDescEs, String seasonDescEn, String seasonDescEs,
-        String sunriseSunsetDescEn, String sunriseSunsetDescEs) {
+    public DescriptionsBuilder disclaimerEn(String disclaimerEn) {
       this.disclaimerEn = disclaimerEn;
+      return this;
+    }
+
+    public DescriptionsBuilder disclaimerEs(String disclaimerEs) {
       this.disclaimerEs = disclaimerEs;
-      this.sol_desc_en = sol_desc_en;
-      this.sol_desc_es = sol_desc_es;
+      return this;
+    }
+
+    public DescriptionsBuilder solDescEn(String solDescEn) {
+      this.solDescEn = solDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder solDescEs(String solDescEs) {
+      this.solDescEs = solDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder terrestrialDateDescEn(String terrestrialDateDescEn) {
       this.terrestrialDateDescEn = terrestrialDateDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder terrestrialDateDescEs(String terrestrialDateDescEs) {
       this.terrestrialDateDescEs = terrestrialDateDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder tempDescEn(String tempDescEn) {
       this.tempDescEn = tempDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder tempDescEs(String tempDescEs) {
       this.tempDescEs = tempDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder pressureDescEn(String pressureDescEn) {
       this.pressureDescEn = pressureDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder pressureDescEs(String pressureDescEs) {
       this.pressureDescEs = pressureDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder absHumidityDescEn(String absHumidityDescEn) {
       this.absHumidityDescEn = absHumidityDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder absHumidityDescEs(String absHumidityDescEs) {
       this.absHumidityDescEs = absHumidityDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder windDescEn(String windDescEn) {
       this.windDescEn = windDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder windDescEs(String windDescEs) {
       this.windDescEs = windDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder gtsTempDescEn(String gtsTempDescEn) {
       this.gtsTempDescEn = gtsTempDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder gtsTempDescEs(String gtsTempDescEs) {
       this.gtsTempDescEs = gtsTempDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder localUvIrradianceIndexDescEn(String localUvIrradianceIndexDescEn) {
       this.localUvIrradianceIndexDescEn = localUvIrradianceIndexDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder localUvIrradianceIndexDescEs(String localUvIrradianceIndexDescEs) {
       this.localUvIrradianceIndexDescEs = localUvIrradianceIndexDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder atmoOpacityDescEn(String atmoOpacityDescEn) {
       this.atmoOpacityDescEn = atmoOpacityDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder atmoOpacityDescEs(String atmoOpacityDescEs) {
       this.atmoOpacityDescEs = atmoOpacityDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder lsDescEn(String lsDescEn) {
       this.lsDescEn = lsDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder lsDescEs(String lsDescEs) {
       this.lsDescEs = lsDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder seasonDescEn(String seasonDescEn) {
       this.seasonDescEn = seasonDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder seasonDescEs(String seasonDescEs) {
       this.seasonDescEs = seasonDescEs;
+      return this;
+    }
+
+    public DescriptionsBuilder sunriseSunsetDescEn(String sunriseSunsetDescEn) {
       this.sunriseSunsetDescEn = sunriseSunsetDescEn;
+      return this;
+    }
+
+    public DescriptionsBuilder sunriseSunsetDescEs(String sunriseSunsetDescEs) {
       this.sunriseSunsetDescEs = sunriseSunsetDescEs;
+      return this;
     }
 
     public Descriptions build() {
