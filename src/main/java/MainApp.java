@@ -1,12 +1,19 @@
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import millom.sandbox.mapper.NasaMapper;
 import millom.sandbox.service.MessageService;
 import millom.sandbox.service.MessageServiceImpl;
+import millom.sandbox.service.MyClientService;
+import millom.sandbox.service.WeatherService;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
+import resources.MyResource;
+import resources.NasaResource;
 
 public class MainApp {
 
@@ -17,16 +24,19 @@ public class MainApp {
 
     // scan packages
     final ResourceConfig config = new ResourceConfig();
+    final Client client = ClientBuilder.newClient();
 
     config.register(MyResource.class);
-
-   // config.register(AutoScanFeature.class);
+    config.register(NasaResource.class);
 
     config.register(new AbstractBinder(){
       @Override
       protected void configure() {
-        // map this service to this contract
         bind(MessageServiceImpl.class).to(MessageService.class);
+        bind(client).to(Client.class);
+        bindAsContract(NasaMapper.class);
+        bindAsContract(MyClientService.class);
+        bindAsContract(WeatherService.class);
       }
     });
 
