@@ -12,6 +12,16 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "MainApp"
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 dependencies {
 
     implementation 'org.glassfish.jersey.inject:jersey-hk2:3.0.4'
@@ -20,11 +30,13 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.36'
     implementation 'ch.qos.logback:logback-classic:1.2.11'
     implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:3.0.4'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
     testImplementation 'org.assertj:assertj-core:3.23.1'
     testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
     testImplementation 'org.mockito:mockito-all:1.10.19'
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.powermock:powermock-api-mockito:1.7.4'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
 }
