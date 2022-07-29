@@ -5,10 +5,10 @@ import static millom.sandbox.Utility.WeatherDataUtility.SOL2;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyFloat;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.stream.Stream;
