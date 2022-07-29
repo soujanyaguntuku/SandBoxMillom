@@ -47,7 +47,7 @@ class NasaResourceTest {
     when(weatherServiceMock.getWeatherMapping("weather", null, 1.0f, "msl"))
         .thenThrow(new InvalidWeatherException("invalid json data"));
     Response response = nasaResource.getMarsWeather("weather", null, 1.0f, "msl");
-    assertThat(response.getStatus()).isEqualTo(500);
+    assertThat(response.getStatus()).isEqualTo(400);
     assertThat(response.getEntity()).isNotNull();
   }
 
@@ -73,7 +73,7 @@ class NasaResourceTest {
         .thenReturn(null);
     Response response = nasaResource.getMarsWeatherForEarthDate("weather", "json", 1.0f, "msl",
         date);
-    assertThat(response.getStatus()).isEqualTo(400);
+    assertThat(response.getStatus()).isEqualTo(404);
     assertThat(response.getEntity()).
         isEqualTo("The given date doesn't have any information in the mars weather report.");
   }
@@ -83,7 +83,7 @@ class NasaResourceTest {
   void getMarsWeatherForEarthDateInvalidFeed() {
     Response response = nasaResource.getMarsWeatherForEarthDate("weathr", "json", 1.0f, "msl",
         "2022-02-01");
-    assertThat(response.getStatus()).isEqualTo(500);
+    assertThat(response.getStatus()).isEqualTo(400);
     assertThat(response.getEntity()).isEqualTo("The input values are not valid for feed.");
   }
 
@@ -92,7 +92,7 @@ class NasaResourceTest {
   void getMarsWeatherForInvalidDateFormat() {
     Response response = nasaResource.getMarsWeatherForEarthDate("weathEr", "json", 1.0f, "msl",
         "2022-02-1");
-    assertThat(response.getStatus()).isEqualTo(500);
+    assertThat(response.getStatus()).isEqualTo(400);
     assertThat(response.getEntity()).isEqualTo("The input values are not valid for feed.");
   }
 
