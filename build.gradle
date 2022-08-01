@@ -12,6 +12,16 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "MainApp"
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 dependencies {
 
     implementation 'org.glassfish.jersey.inject:jersey-hk2:3.0.4'
