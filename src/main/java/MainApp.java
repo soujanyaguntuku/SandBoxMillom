@@ -3,7 +3,10 @@ import jakarta.ws.rs.client.ClientBuilder;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import millom.sandbox.mapper.JdkMapper;
 import millom.sandbox.mapper.NasaMapper;
+import millom.sandbox.service.JdkClientService;
+import millom.sandbox.service.JdkService;
 import millom.sandbox.service.MessageService;
 import millom.sandbox.service.MessageServiceImpl;
 import millom.sandbox.service.MyClientService;
@@ -12,6 +15,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.inject.AbstractBinder;
 import org.glassfish.jersey.server.ResourceConfig;
+import resources.JdkResource;
 import resources.MyResource;
 import resources.NasaResource;
 
@@ -28,15 +32,21 @@ public class MainApp {
 
     config.register(MyResource.class);
     config.register(NasaResource.class);
+    config.register(JdkResource.class);
 
-    config.register(new AbstractBinder(){
+    config.register(new AbstractBinder() {
       @Override
       protected void configure() {
         bind(MessageServiceImpl.class).to(MessageService.class);
         bind(client).to(Client.class);
+
         bindAsContract(NasaMapper.class);
         bindAsContract(MyClientService.class);
         bindAsContract(WeatherService.class);
+
+        bindAsContract(JdkMapper.class);
+        bindAsContract(JdkClientService.class);
+        bindAsContract(JdkService.class);
       }
     });
 
@@ -46,6 +56,7 @@ public class MainApp {
     return httpServer;
 
   }
+
   public static void main(String[] args) {
 
     try {
