@@ -16,13 +16,13 @@ public class JdkService {
 
   public List<String> getReleaseNamesMapping(String architecture) throws JdkException {
     List<String> allPagesReleaseNames = new ArrayList<>();
-    String marsWeatherAsString = "";
+    String releaseNamesAsString = "";
 
-    for (int page = 0; marsWeatherAsString != null; page++) {
-      marsWeatherAsString = jdkClientService.getJdkJsonReleaseNames(architecture, page);
+    for (int page = 0; releaseNamesAsString != null; page++) {
+      releaseNamesAsString = jdkClientService.getJdkJsonReleaseNames(architecture, page);
 
-      if (marsWeatherAsString != null) {
-        ReleaseNames eachPageReleaseNames = jdkMapper.deserializeReleaseNames(marsWeatherAsString);
+      if (releaseNamesAsString != null) {
+        ReleaseNames eachPageReleaseNames = jdkMapper.deserializeReleaseNames(releaseNamesAsString);
         for (String release : eachPageReleaseNames.releases()) {
           allPagesReleaseNames.add(release);
         }
