@@ -9,10 +9,14 @@ import millom.sandbox.pojos.ReleaseNames;
 
 public class JdkService {
 
-  @Inject
   private JdkClientService jdkClientService;
-  @Inject
   private JdkMapper jdkMapper;
+  @Inject
+  public JdkService(JdkClientService jdkClientService, JdkMapper jdkMapper) {
+    this.jdkClientService = jdkClientService;
+    this.jdkMapper = jdkMapper;
+  }
+
 
   public List<String> getReleaseNamesMapping(String architecture) throws JdkException {
     List<String> allPagesReleaseNames = new ArrayList<>();
