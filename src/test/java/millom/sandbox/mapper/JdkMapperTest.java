@@ -21,7 +21,7 @@ class JdkMapperTest {
         JsonUtility.getSampleResponse("JdkJsonResources/releaseNamesArmPage0.json"));
     assertThat(response).isNotNull();
     assertThat(response.releases()).hasSize(10);
-    assertThat(response.releases().get(2)).isEqualTo("jdk-18+36");
+    assertThat(response.releases().get(2)).isEqualTo("jdk-18.0.1+10");
   }
   @Test
   void deserializeWeatherStringAsEmpty() {
